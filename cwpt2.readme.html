@@ -1,0 +1,1395 @@
+<HTML>
+<BODY>
+<P>
+<H1>
+<B>
+cwpt2 - c.w. practice text
+</B>
+</H1>
+cwpt2 - c.w. practice text, is a Free, command line utility for Windows which 
+you can use to generate c.w. practice text. Its features may provide options not available in your favorite Morse 
+tutor/trainer.
+<P>
+cwpt2 - doesn't replace your tutor. LCWO.net, G4FON, "Just Learn Morse Code", "Morse Elmer", ebook2cw, etc. - they will 
+still be used to play the practice text generated.
+<P>
+Use for head copy or written text of words. As your copy skill improves, you can then add in prefixes and/or suffixes, 
+with: ProSigns, numbers, or punctuation as desired.
+<P>
+Random code groups of user specified length, and characters, optionally separated by random delimiter characters, or an inter
+mix of words from a document and code groups, are possible.
+<P>
+For users of DJ1YFK's, ebook2cw tool (or LCWO.net), there are a dozen options that insert in-line wpm speed commands to the output file,
+which in turn are used by ebook2cw (or LCWO) for yet another option to learning.
+<P>
+Many of the features provide practice material and ideas from: William Pierpont, Ted McElroy, Russ Farnsworth, Dave Finley and other notable c.w. instructors
+<P>
+
+	From my research and practice of morse code, there are a handful of things that almost all agree on:
+
+	<LI> its dits and dahs NOT dots and dashes
+	<LI> don't repeat in your head or sub-vocalize the code
+	<LI> cw is an audible skill, don't "see" the code; don't use any "picture" memory method
+	<LI> don't count dits and dahs - hear each character as a unit of sound just like hearing you name or a word
+	<LI> go for accuracy vs speed 
+	<LI> learn a character with a 90% accuracy before you start to learn the next character
+	<LI> regular (daily) practice 20-30 minutes
+
+	Now comes the more difficult part, "What is the best method to learn?". Unfortuately, I don't think there is ONE
+	answer to that. The reason there are so many software tutors, courses (online, on mp3/tape/record/dvd, classroom)
+	is that we all learn somewhat differently. Many studies have been done, and statistically they claim varying
+	degrees of success i.e. students learned X characters in Y time, or could copy code at Z words per minute,
+	but very few talk about those that did not achieve success from theie method.
+
+	The reason this tool was created, was because regardless of which method you follow, or whose "product" you use
+	to send you code to hear and (recognize in your head, print, write, or type) there will be some characters or
+	sequences that are not as good as others. Your chosen "product" may not have enough variety or flexibilty to 
+	let YOU generate practice material that suites your needs to improve recognition, accuracy, speed, etc.
+
+	The features of this tool were to put you in the drivers seat, to create practice which SUPPLEMENTS the capabilities
+	of the tutor program(s) which you use. I'd would guess that like an toolbox, cwpt will offer many options, but
+	you will likey find a few that you regualarly use, some occationally, some never.
+
+<H2>
+	<MARK>Whats New?:</MARK>
+</H2>
+To save return users and readers some time, this section will give a brief introduction to changes of substance.
+
+For new or changed options, look at the options section that follows (or cwpt2.exe -help), and then search 
+for the option name. Newer changes are always in later examples, but some examples do build on the previous
+example to keep text short.
+
+<PRE>
+<U>Since mid-Fall 2019:</U>
+
+ -EB_SF, -EF_FS See example: 22, 23 these are for the slow/fast cycling practice. See example 22, 23.
+
+ -MMR mixedMode random. mixedMode intersperses a code group with plain text, this option makes that
+  random instead of fixed.
+
+ -header See example 20.
+
+<U>Since Jan 2020:</U>
+
+1.2.4 3/3/2020
+
+FYI - the windows version also plays at the DOS prompt, and under BASH shell
+installed on Windows.
+
+-reverse, reverses the spelling of words read from -in fileName. 
+ Why? You get the same letter frequency of input words, but certainly not 
+ much chance of anticipating text. If you use with -NR (non-random) the words stay in the order read. 
+ See example 24.
+
+ -EB_EFFECTIVE, -EB_EFFECTIVE_RAMP, -EB_SF, -EF_FS. See example: 22, 23 ,25 
+  these are effective speed a.k.a. Farnsworth features.
+
+ -DR makes the appearance of delimiters controlled by -DM (delimiter multiples) random.
+
+ -EB_HELP, prints some option compatibility information for ebook options
+
+ -lesson, takes the Koch lesson number or  learned character count  and populates two options cglist (for code groups) and inlist 
+  (for parsing word files) without the need to type in the character lists. The default order is drom LCWO, but
+  the tutor option below gives other choices. Example 26
+
+ -tutor, ONLY if you use -lessons AND you don't use LCWO as your tutor e.g. MorseElmer, JustLearnMorseCode, or G4FON, this option sets the order and specific
+  characters to be appropriate to the lesson numbers. Example 26
+
+ - The options file now supports end-of-line comments: min=3 # bypass many prepositions.
+
+ - A Raspberry Pi executable was added to the website.
+
+ - See example 25 for a use of 80% of the options working together.
+
+ - Improved error detection, edits and typos cleaned in read-me.
+
+<U>Since Mar 3/2020:</U>
+
+1.2.6 3/26/2020
+
+ - If input file contains two-character prosigns (i.e. &lt;SK> or &lt;bt>) in the same context as "words", they will be treated as "words".
+   That is they will get suffixes, prefixes, be repeated, etc.
+
+ - DM and delimiter option can be used with EB_REPEAT
+
+<U>Since April 3/2020:</U>
+
+- By default the option "inlist" has been expanded to cover the to cover
+  the German, French, and Spanish characters supported by LCWOs CW settings
+  page. Nothing for the user to do, but if the input file contains those
+  characters, those words WILL be matched.
+
+- Support Morse Code Ninja added to the "tutor" option for those using the "lesson" value of the various tutors.
+
+- The names of tutors, is now case insensitive.
+
+<U>April 22/2020 version 1.3.0:</U>
+
+- Several more punctuation characters added to be fully compatible with LCWO. These are NOT by default, but are allowed
+  to be included in any of the "list" options (prelist, suflist, cglist, delimiter), they include: !():;-
+  Note some tutors many NOT support these, most likely they will just ignore them if they don't.
+
+- The delimiter option had been enhanced in several ways (see new section below: Delimiter vs. CodeGroups.
+
+- Another tutor has been added to the tutor option, its called LockdownMorse (case insensitive). It presents the learning
+  order used by Matt M0PTO, in his in progress (as of April 2020) YouTube morse teaching course. Several more characters
+  will still be added. Users of cwpt2 who are following Matt's course, will want to check back for an update in about 
+  two weeks.
+
+- More support for users wanting practice with German, French, or Spanish using the characters in LCWO's c.w. setup options.
+  These are already supported by default in readning an input file for word practice. Now they can be used if desired in
+  the other "list" options (also explained in the Delimiter vs Code Groups section.)
+
+- made non-English letters input to inlist the same as other list options - much cleaner
+
+- added a space as an acceptable character to the the delimiter option 
+
+- added a +(some tutor use + for &gt;AR&lt;) as an acceptable character to the the delimiter option 
+
+- support repeat option for code groups just as in word mode
+
+- word mode, the entire input file is randomized (for words meeting length and inlist criteria) then trimmed so
+  no need for skip option UNLESS -NR is used) gives user the most random words
+
+- *** Option EB_HELP, renamed "help" with arguments of: EBOOK, INTERNATIONAL, TUTORS. ***
+
+- *** Mini feature, wordCount. Strings consectutive words into a phase and treas it as a single entity, for repeating. See example 26. ***
+
+- *** ONLY for users of LCWO or ebook2cw. An '*' in the delimiter string gives a half-second silence.
+
+See new EBOOK OPTION OVERVIEW section below.
+
+73 WA2NFN
+
+</PRE>
+<P>
+<H2>
+Quick Startup Test
+</H2>
+Just to be sure you have the appropriate executable for your operating system, and your operating system can find and 
+execute a command, try any of these (options will be explained later, but should be obvious):
+
+	<LI> you will need to make the file executable per your OS
+	<LI> cwpt2.exe -codeGroups
+             or add -lesson=N,  where N is the 1-40 Koch lesson you are up to.
+	<LI> cwpt2.exe -in=file.txt  
+	     where file.txt is any text file you have in the directory
+
+	     That's the two main modes of operation: codeGroups or "words".
+	     If you like to experiment a little before you read, you can try any or all of these added to either 
+	     command above:
+
+	     -caps, or -len=30, or -num=300
+
+</PRE>
+<H2>
+Overview:
+</H2>
+Except for the code group mode, you select a source of input, which is a readable text file (Project Gutenberg book,
+word list, internet article, web page, etc.), as your input file. You can use  file with German, Spanish, or French if
+your code tutor (like LCWO) will send appropriate morse for them. Also, if your input has ProSigns (i.e. <SK> or <sk>)
+they are treated like words, if the letters they contain are in the option /Binlist
+<P>
+cwpt2, parses the input file and uses your options (or internal defaults) to generate a list of UNIQUE strings 
+of text in the form or "words". You pick, minimum and maximum word length, number of words to generate, output 
+format, and more. Virtually all options have defaults to minimize typing (or can be saved in an options file).
+<P>
+The tool writes to your screen (for your review and/or cut-and-paste) or optionally a file (for tutors that can read from a  file). 
+<P>
+The cwpt2, tool does NOT change or require any change on your PC (it's a single file).
+<P>
+No install or setups, just download the file and run it from the command line.
+<P>
+This read-me details all options and also contains examples of their usage.
+<P>
+cwpt2 overcomes some of the common issues with practice text, or its generation:
+<UL>
+	<LI> limits typing or editing to create text
+	<LI> flexible input sources
+	<LI> better distribution of random data 
+	<LI> user control of of input matching criteria
+	<LI> user control of duplication
+	<LI> random output to eliminate memorization
+	<LI> can produce output of mixed words and code groups
+</UL>
+<H2>
+Options:
+</H2>
+There are a lot of options, however as you'll see, in any execution you may only use a few. 
+Options can be read from a file (also see -opt) and/or the command line.
+These options, override the internal defaults. The options in the file, will be overridden,
+if the same option appears on the command line. <I>So if you use both -opt and command line opts you will
+most likely want -opt to be the left most option.</I> If you get a display of the options during execution, 
+the syntax issue may be in the file or the command line. An example options file, with comments, follows.
+<P>
+<PRE>
+
+A few notes on option format:
+
+	<LI> command line options MUST be separated by a previous option by at least one space
+	<LI> a "-" MUST precede the option name (no spaces)
+	<LI> option names MUST be in the case shown in the option listing below
+	<LI> following the option name, there are two formats to separate the name from its value
+		<LI> an "=" with no spaces, like: -name=value (recommended)
+		<LI> or space, like: -name value
+	<LI> values have 3 possible types as listed in the options table below
+		<LI> int values are always digits, and always >= 0, like: -min=8
+		<LI> bool (short for boolean) turn an option on/off, the allowed values follow
+			<LI> to enable a feature, use: TRUE, true, t, T, True, 1 for TRUE the language also
+		             supports NO vale at all, so: -caps=T, or -caps=true, etc. OR just -caps
+			<LI> disabled is similar with values: FALSE, false, f, F, False, 0
+			     BUT there is not a NO value equivalent
+		<LI> string options should have values within double quotes, if the string contains a space or "="
+	             it MUST be quoted like: prelist="123ABC="
+		     	<LI> inlist value IS case sensitive since its used to match input text
+			<LI> all other list options: prelist, suflist, cglist, delimiter will when used
+		             have their case converted to n accordance  with the -caps option.
+			     The first of these three can be ranges, like "a-dz0-4" or it can be in expanded form
+			     like "abcdz01234" (the order of the range is as shown, 4-0 would fail).
+
+			     To increase the frequency of use of a character, you can increase its presence in the 
+			     list option. For example, if you want code groups to favor X and Z, you could make
+			     cglist="A-ZXXXZZZ" so odds of getting an A is 1 out of 32, but X and Z are 4 out out of 32.
+	<LI> all rules above apply to options in an options file as well, with the exception that a name does not need
+	     to be preceded by a "-"
+
+</PRE>
+		 
+<PRE>
+      # this is a comment line
+      # a blank line as below, is OK too
+
+            # this line is indented with white space
+      # below are two formats for the "min" option 
+      # you can use either of these formats
+      min 4
+      min=4  # comments can be at the end of lines
+      #
+      # the option can also be indented with white space
+      # to temporarily eliminate an option just comment it out as below
+      # len=80
+      #
+      #DONE  A SPECIAL COMMENT, THIS ENDS THE PROCESSING OF THE OPTION FILE
+      #END   A SPECIAL COMMENT, THIS ENDS THE PROCESSING OF THE OPTION FILE
+             Lines below are ignored without the need to edit or comment them.
+
+      Note: To comment out a block of lines, use the standard programming 
+            block comment rather than many uses of the "#" character.
+	    See below:
+
+	    min 4
+	    /*
+	    max 6
+	    len 80
+	    */
+	    # above the "/*" starts comments and "*/" ends comments
+
+</PRE>
+<H2>
+Delimiter vs. Code Groups
+</H2>
+You can skip this until you encounter the explanation of the following twp options <B>delimiter</B> and <B>codeGroups</B>.
+<P>
+There are five <I>list type</I> options, the first three are: prelist, suflist, cglist. For now I want to just focus
+on how those 3 are given, and use input (how they are used is covered elsewhere.
+<P>
+Where on the command line or in the options file, these options are treated as if they were just a collection
+of characters AFTER 2 parsing operations for the users convenience. So if you want code groups to contain any of a set of characters it would look like this: cglist="eiota27?". Each character is a standalone entitiy. Now for the two special
+situations. To save you typing, LETTERS (upper or lower case) or DIGITS can be entered using <I>range</I> notation.
+In range notation, A-H, is the same as typing ABCDEFGH - the only two criteria is the first character must come in dictionary
+order (A-D is good, D-A is invalid), and each range is independent (A-z invalid, A-Za-z good). Digits similarly go from 0-9.
+The other situation is only for users interested in the foreign language characters discussed. For those users you can represent the letter you want using a simplified notation which corresponds to a more cumbersome sequence found in UTF-8 character tables (which you can Google). More on this later, but basically you enter a sequence like %FC instead of '\u00FC'.
+<P>
+<PRE>
+Here is the way you will represent the various supported non-English characters in any of the "list" options.
+
+Enter: %C0 to represent '\u00C0' // Upper Case A grave
+Enter: %E0 to represent '\u00E0' // Lower Case a grave
+Enter: %C4 to represent '\u00C4' // Upper Case A diaeresis
+Enter: %E4 to represent '\u00E4' // Lower Case a diaeresis
+Enter: %C9 to represent '\u00C9' // Upper Case E acute
+Enter: %E9 to represent '\u00E9' // Lower Case e acute
+Enter: %C8 to represent '\u00C8' // Upper Case E grave
+Enter: %E8 to represent '\u00E8' // Upper Case E acute
+Enter: %C7 to represent '\u00C7' // Upper Case C cedilla
+Enter: %E7 to represent '\u00E7' // Lower Case c cedilla
+Enter: %D1 to represent '\u00D1' // Upper Case N tilde
+Enter: %F1 to represent '\u00F1' // Lower Case n tilde
+Enter: %D6 to represent '\u00D6' // Upper Case O diaeresis
+Enter: %F6 to represent '\u00F6' // Lower Case o diaeresis
+Enter: %DC to represent '\u00DC' // Upper Case U diaeresis
+Enter: %FC to represent '\u00FC' // Lower Case u diaeresis
+</PRE>
+<P>
+The option <B>inlist</B> defaults to all the upper and low case English letters (A-Za-z), and the upper and lower case of the 
+foreign letters. A user will only change this option if they do not know all the letters which might be found in the
+input file and used to give "word" practice. 
+<P>
+<H3>
+Delimiter Option
+</H3>
+This option is the last of the 5. It is significantly different than the others in several ways, in order to provide
+its design objective.
+<P>
+Although the option in some case looks like the others, its processing and use are different. This option contains one or morefields of strings of characters, but they are NOT individual characters. delimiter="abc" is one field of "abc", NOT an "a" or "b" or "c". If the that delimiter were used with the word input file: "this is a test", the output would possibley be "test abc is abc this abc a". This would be good if you neede a lot of practice with "abc" with your words. Most likely, you want variety for better learning and less anticipation, so consider a delimiter with multiple fields like: delimiter="abc^34^z^?^,.".
+Now with the example above, the output might be: "is 34 test ,. a abc this". More useful delimiter now might be: "cq^de^qth^rst^&lt<SK>". If you like, the foreign letter can be used (but not range operation between them) i.e. "a%FC^%FC%C0^a-f^a-f123".
+<B>NOTE</B> lets look at those last two fields, this is the other way why a delimiter is different than the other lists.
+<P>
+If the field (data between the '^'s or a '^' and the double quote contains a range <I>and</I> other characters (letters, numbers, another range, or foreign character) then the range is simply expanded as seen already. So that last field is used as if you had typed "abcdef123"; and that entire sequence is what would apprear between words.
+<B>HOWEVER</B> if the field contained, <B>ONLY</B> a simple range, as in the next to last field above "^a-f^" this is expanded as if you wanted <B>EACH</B> character to be treated as if it were its own field. Said another way the field "^a-f^" is treated as if you typed "a^b^c^d^e^f". (Much quicker and less error prone.)
+<H3>
+Use of Delimiter
+</H3>
+The delimiter option, works in conjuction with 2 other options. Delimiter-multipes (entered as DM=x), where x syas how many of the fields in the delimiter should be used (as a maximum) at any one time. Thus, with DM=1 and delimiter="a-d^1-3^?"
+as we said this expands and is the same as 9 single character fields A^B^C^D^a^2^3^?, so in between each "word" you would get ONE of those characters. If DM=3, then you would get 1,2, or 3 of them concatenated together like: "this 3a test dd? is c a".
+If the option DR is also set, that says even though we asked for delimiters in between each word, that choice is now random (DR means delimiter-random).
+<P>
+While the fields of a delimiter can be a word or meaningful sequence like "QTH" or a ProSign like <AR>, the code groups cannot. Later in the document you will see that many features can be used in one execution to generate practice text to suit your
+current training needs. Using input words, code groups, delimiters, ProSigns and some random flags you could get very varied
+practice like: "this 38 test 78 is 838 4f?,7j practice 321 generated nw4,7d.,".
+<P>
+<H2>
+EBOOK Option Overview:
+</H2>
+<PRE>
+This section can be skipped on first read or if you are NOT a user of LCWO or ebook2cw.
+
+****************************************************************************************************
+For any practice session text where you want to have on-the-fly changes in word speed (wpm) and/or
+effective speed (aka Farnsworth), you will need "ebook" options (originally for users of ebook2cw, 
+but incorporated into LCWO's features). 
+
+Ebook Options are listed in the help file below and demonstrated in one or more examples, I want to 
+give you an over view because the combinations create very different practice material.
+Ebook options are used in <I>addition</I> to other options.
+
+The following names in <I>italics</I>, are not options and may not be directly seen in the rest
+of the text but short of repeating samples of what they create, I think (or hope) they give you a 
+mental image of what they will achieve. They can all also make use of other options beyond the 
+ebook ones.
+
+I'll list the options, but not relevant values since that's in the examples.
+In the following, the word "sentence" means a collection of space separated words, no punctuation 
+or grammatical meaning is implied. E.g. "today tree name rig sunshine"
+
+<B>If math is implied below by '+' or "divide", that's done by the tool, not the user.</B>
+
+<I>SLOW-FAST:</I> Alternating sentences of specified word counts, starting at a <B>EB_LOW</B> speed 
+   with <B>EB_SLOW</B> number of words, and then switching to <B>EB_LOW</B>+<B>EB_STEP</B> (think increment) 
+   fast speed where the length is <B>EB_FAST</B> words. Optionally, you can use <B>EB_EFFECTIVE</B> 
+   (Farnsworth), and <B>EB_SF</B> and/or <B>EB_FS</B> (both explained in examples 16 and 23). The slow 
+   and fast sections alternate until the input words meet other criteria (all controlled by non-ebook 
+   options (e.g. min, max, num, etc.) are exhausted. (Optional: EB_EFFECTIVE, if used it sets the same
+   effective or Farnsworth speed for both the SLOW and FAST speed portions.)
+
+   (Required: <B>EB_SLOW, EB_FAST, EB_LOW, EB_STEP</B>)
+
+<I>RAMP:</I> This is like walking up a ramp or staircase, <B>EB_RAMP</B> enables the feature. You start 
+   at <B>EB_LOW</B> speed for a sentence, then speed increases (by <B>EB_STEP</B>) after a number of words 
+   are created (total words desired divided by the number of speed steps <B>EB_NUM</B>), increases. Ramp 
+   finishes when the total desired words count and number of steps are exhausted. Optionally, <B>EB_EFFECTIVE</B> 
+   and/or <B>EB_REPEAT</B>. <I>In this behavior, the effective speed remains a constant amount less 
+   then the speed.</I>
+
+   (Required: <B>EB_RAMP, EB_LOW, EB_STEP, EB_NUM</B>)
+
+<I>EFFECTIVE RAMP:</I> This is like walking up a ramp or staircase, but unlike <B>EB_RAMP</B>, the
+   speed stays at <B>EB_LOW</B> for the entire session; instead the effective speed increases with each
+   section. <B>EFFECTIVE_RAMP</B> enables the feature. You start at <B>EB_EFFECTIVE</B> <I>effective speed</I>
+   for a sentence, than <I>effective speed</I> increases after a number of words are created 
+   (total words desired divided by the number of speed steps <B>EB_NUM</B>), increases. Each new effective
+   speed is <B>EB_STEP></B> added to the previous value. Ramp finishes when the total desired words count and 
+   number of steps are exhausted.  
+   This feature is help users with Farnsworth speed abilities like 20/12 move toward 20/20.
+   Optionally, <B>EB_REPEAT</B>.
+   In this behavior, the <I>character speed</I> remains a constant.
+
+   (Required: <B>EB_EFFECTIVE_RAMP, EB_EFFECTIVE, EB_LOW, EB_STEP, EB_NUM</B>)
+
+<I>REPEAT:</I> Functionally, this is similar to RAMP, in that it starts low and builds up, but its
+   on a word-by-word basis, not sections of sentences. <B>EB_REPEAT</B> enables the behavior.
+   It starts at <B>EB_LOW</B> speed, it sends one word, then the speed is incremented to <B>EB_LOW</B>
+   + <B>EB_STEP</B> then the SAME word is sent again, this repeats until <B>EB_NUM</B>
+   words of input meeting other criteria (all controlled by non-ebook options (e.g. min, max, num, etc.)
+   are exhausted. Optionally, this can be used with either <B>EB_RAMP</B> or <B>EB_EFFECTIVE_RAMP</B> (Note:
+   if you use <B>EB_EFFECTIVE</B> with <B>EB_REPEAT</B>, the effective speed is <I>not</I> influenced by <B>EB_STEP</B>. 
+   That is the effective speed is always the same distance below the character speed set by the difference of
+   <B>EB_LOW</B> minus <B>EB_EFFECTIVE</B>. Ex. EB_LOW=20, EB_STEP=5, EB_EFFECTIVE=14 giving you what users refer to as 20/14
+   (aka Farnsworth), so the difference is 6 wpm. With EB_REPEAT=3 you could get copy like: 
+   "|e14 |w20 some |e19 |w25 some |e24 |w30 some |e14 |w20 word |e19 |w25 word |e24 |w30 word ...."
+
+   (Required: <B>EB_REPEAT, EB_LOW, EB_STEP</B>)
+
+<I>BOUNCE:</I> Bounce or random speed by word.  This behavior is enabled by the proper combinations of options. 
+   Think of a collection of words, EACH word with a its own tag specifies its speed (and optionally <B>EB_EFFECTIVE</B> 
+   speed, as in RAMP its a fixed amount less than the character speed), all the words are bounced around in a container 
+   and then extracted one-by-one.  The container has one constraint, it never outputs two sequential words with the 
+   same speed.  So you could get: word1@20wpm word2@12wpm word3@30wpm ....
+   Speeds determined by <B>EB_LOW</B>, and <B>EB_NUM</B> number of <B>EB_STEP</B>s added to it. The words
+   sent equals the value of option <I>num</I>. Optionally, <B>EB_REPEAT</B> means the current word will repeat
+   sequentially, but each with its own speed value.
+
+   (Required: <B>EB_LOW, EB_STEP, EB_NUM</B>)
+
+   This was an overview, examples show combinations with other options.
+
+<B>-help EBOOK</B> gives a much abbreviated version of the above for command line use.
+
+Note: An '*' in a delimiter string gives half-second of silence if played in LCWO or ebook2cw. See delimiter later in readme./
+
+
+******************************************************************************************************
+</PRE>
+<P>
+Full option information, which is available by cwpt2.exe -help, follows:
+
+(On a command line mistake, the first line of the output is the best clue to the problem.)
+<P>
+<PRE>
+
+  -DM int
+    	Delimiter multiple, (if delimiter is used.) Between 1 and DM delimiter
+    	strings are concatenated. (min 0, max 20)
+  -DR
+    	Delimiter randomness, (if DM > 0) DR=true makes a delimiter randomly print on an instance-by-instance basis
+  -EB_EFFECTIVE int
+    	ebook2cw effective (aka Farnsworth) speed must be &lt; EB_LOW.
+  -EB_EFFECTIVE_RAMP
+    	ebook2cw ramp effective speed (char speed constant) must be &lt; EB_LOW.
+  -EB_FAST int
+    	ebook2cw number of words to send at faster speed.
+  -EB_FS string
+    	to alert transition from EB_LOW+EB_STEP speed for plain text to EB_LOW for codeGroup mixedMode
+    	or EB_FAST text to EB_SLOW text.
+  -EB_HELP
+    	Print an help summary for EB_ options.
+  -EB_LOW int
+    	ebook2cw low character speed wpm setting. (default 15)
+  -EB_NUM int
+    	ebook2cw number of speed change steps.
+  -EB_RAMP
+    	ebook2cw ramps speed up in steps (default false).
+  -EB_REPEAT int
+    	ebook2cw times to repeat each word with increasing speed.
+  -EB_SF string
+    	to alert transition from EB_LOW to EB_LOW+EB_STEP for plain text in mixedMode
+    	or EB_SLOW text to EB_FAST text,
+  -EB_SLOW int
+    	ebook2cw number of words to send at slower speed.
+  -EB_STEP int
+    	ebook2cw wpm and/or effectie speed change increment. (default 5)
+  -MMR
+    	Mixed-Mode-Random, randomizes the output of a code group in mixed mode.
+  -NR
+    	Non-Randomized output words read from input.
+  -caps
+    	Print output in all capitals. (default lower case)
+  -cglist string
+    	Set of characters to make random code groups. (default "a-z0-9.,?/=")
+  -cgmax int
+    	Maximum # characters in a code group >= cgmin. (Default 5) (default 5)
+  -cgmin int
+    	Minimum # of characters in a code group. (Default 5) (default 5)
+  -codeGroups
+    	Random code groups from cglist characters.
+  -delimiter string
+    	Output an inter-word delimiter string. A "^" separates delimiters e.g. <SK>^abc^123.
+    	A blank field e.g. aa^ ^bb, is valid to NOT get a delimiter. (default ""). 
+  -header string
+    	string copied verbatim to head of output
+  -in string
+    	Input text file name (including extension).
+  -help string
+  	Where string is: EBOOK, INTERNATIONAL, TUTORS.
+  -inlist string
+    	Set of characters to define an input word. (default "A-Za-z")
+  -len int
+    	Length characters in an output line (max 500). (default 80)
+  -lesson int
+    	Given the Koch lesson number per LCWO, populates options inlist and cglist with appropriate characters. (Default 0)
+  -max int
+    	Maximum # characters in a word >= min. (Default 10) (default 10)
+  -min int
+    	Minimum # of characters in a word (or code group). (Default 1) (default 1)
+  -mixedMode int
+    	mixedMode X, If X gt 1 and le 20, a code group will print every X words.
+  -num int
+    	Number of words (or code groups) to output. Min 1, max 10000.
+    	 (default 100)
+  -opt string
+    	Specify an options file name
+  -out string
+    	Output file name.
+  -prefix int
+    	The max number of prefix characters to affix to words.
+  -prelist string
+    	Characters to insert before a word. Prefix X, sets the quantity. (default "0-9,.?/=")
+  -prosign string
+    	ProSign file name. 1-4 TWO letter ProSigns per line.
+    	 No space in between, as in "&lt;BT> &lt;AR>".
+    	&lt;SOS> is the only 3 letter ProSign.
+  -random
+    	If prefix/suffix is used, will determine if either is used on a
+    	word-by-word basis. (default false)
+  -repeat int
+    	Number of times to repeat word sequentially. (Default 1) (default 1)
+  -reverse
+    	Reverses the spelling of words from inlist file (ignored for codeGroups_. (default false)
+  -skip int
+    	Number of the first unique words in the input to skip. Max 5000
+  -suffix int
+    	The max number of suffix characters to append to words.
+  -suflist string
+    	Characters to append to a word. Suffix X, sets the quantity. (default "0-9,.?/=")
+  -tutor string
+    	Only if you use -lessons. Sets order and # of charactersby tutor type.
+    	Choices: (default LCWO), JustLearnMorseCode, G4FON, MorseElmer, MorseCodeNinja (default "LCWO")
+	(use option: -help=tutors for more info)
+  -unique
+    	Each output word is sent only once (num option quantity may be reduced).
+    	 (default false)
+  -version
+    	Display version information. (default false)
+  -wordCount int
+        If wordCount &gt; 1 and repeat &gt;=2, the count of words will be joined into a phrase and treated
+	as an entity (like a word).
+
+
+NOTE: If you use the ebook options, use LCWO's "Convert text to CW" screen for play back or MP3 
+      creation. (you don't need to download ebook2cw as a standalone tool).
+
+</PRE>
+<H2>
+Examples:
+</H2>
+I'll briefly show the impact of some options in the examples below.
+For most examples, for input I'll use the first paragraphs of this read-me file. <I>This is just 
+for illustration, the length and complexity of words is determined firstly by the author of the 
+input file material; secondly by options you give this tool.</I>.
+<P>
+In many cases I'll have some NOTEs, about the output.
+<H2>
+Example 1: 
+</H2>
+<B>cwpt2.exe -min 3 -max 6 -num 30 -in test.txt</B>
+use line text line which tutor that tutor your try you try text Morse you 
+your for which may are not not may that use can offer offer 
+<PRE>
+NOTE: 30 words between 3 and 6 characters from text.txt (which is the first paragraph of this file).
+NOTE: words are NOT in the order found, they are random. 
+NOTE: there were less than 30 unique words found, so after at least one output 
+      of each we reuse them in a uniform distribution.
+</PRE>
+<H2>
+Example 2: 
+</H2>
+<B>cwpt2.exe -min=3 -max=6 -num=30 -in=test.txt <mark>-caps</mark> -len=30</B>
+<PRE>
+CWPT MORSE MAY ARE YOUR TUTOR 
+THAT THAT TUTOR NOT FOR CAN 
+TRY USE MAY TRY OFFER TEXT 
+CWPT YOUR TEXT ARE LINE MORSE 
+LINE CAN WHICH YOU FOR NOT 
+
+NOTE: -caps makes all <MARK>upper case</MARK> output
+NOTE: -len=30 shortened output to 30 charaters (words will not be truncated or split)
+NOTE: options with an argument can use a space or equals as a separator i.e. -min 4, or -min=4
+
+*** In the following examples, and used more defaults options for brevity.
+</PRE>
+
+<H2>
+Example 3: 
+</H2>
+<PRE>
+<B>cwpt2.exe -opt myOptions</B>
+
+Note: opt myOptions, will override default options.
+      Command line options have the final say.
+</PRE>
+<H2>
+Example 4:
+</H2>
+<B>cwpt2.exe -min=3 -max=5 -num=10 -suffix 1 <MARK>-out out.txt</MARK></B>
+<PRE>
+Writing to file: <MARK>out.txt</MARK>
+
+NOTE: out.txt shown below
+you<MARK>9</MARK> which7 for= cwpt2. line1 text/ may8 use9 that5 can= 
+
+NOTE: <MARK>-suffix 1</MARK>, appends one random character from default suflist as a suffix. suflist defaults (see help).
+NOTE: suffix > 1, will have a suffix length BETWEEN 1 and the length given. -suffix 3 below.
+
+that/7 you04 line8 text78 cwpt2. which95 for20 can7? may= use18 
+
+NOTE: -prefix works just like -suffix and by default uses the same characters (see help)
+NOTE: below is example of -suffix 3 and -prefix 1
+
+8which.. 3text58 5you3 8use2 ?may97 1can1, ,for/. 9line=8. 6that/7 
+
+
+*** Default suffixes and prefixes can be changed with -suflist and -prelist as appropriate. 
+*** Duplicating a character in suflist or prelist e.g. ".,???????" increases 
+    the probability of that character in output.
+</PRE>
+<H2>
+Example 5:
+</H2>
+<B>cwpt2.exe <MARK>-prelist="123"</MARK> -prefix=1 <MARK>-suflist="QZX" -suffix 1</MARK> -num 10</B>
+<PRE>
+1morseZ 1offerZ <MARK>2</MARK>offerZ 1whichZ 3morseQ 2tutor<MARK>Q</MARK> 1tutorZ 2whichQ 2whichX 3offerQ 
+
+NOTE: prefixes limited to values of: 1, 2, 3; suffixes are shown in upper case on the command line, however in output
+      their case (as well as those of prefix, cglist in code groups, delimiters, and prosigns) will follow the -caps
+      option.
+</PRE>
+<H2>
+Example 6: (this example shows impact of a space character in a suffix)
+</H2>
+<B>cwpt2.exe -num=10 -suffix=3</B> 
+<PRE>
+Morse/, tutor245 morse1=7 which?9 <MARK>offer  which= 36/</MARK> offer9 offer=5/ tutor7 which57 
+                                  -----  ---------
+
+NOTE: a space character added into the suflist or prelist set of characters.
+      The result of the space is seen above in the two underlines outputs.
+      In the case of, "offer", the tool was going to put just 1 suffix character, since it was a space
+      its unseen. In the case of, "which= 36/" the suffix length was 4, but the second random character was a 
+      space, so it "looks" like a non-word output. This is NOT a bug, its what was asked for, but
+      its starting to look like a random code group feature of your tutor.
+
+<PRE>
+<H2>
+Example 7:
+</H2>
+<B>cwpt2.exe -inlist="aeioufrm" -num=10 -max=8</B> (quoting of strings in lists, double or single is a good idea)
+<PRE>
+offer are offer for use use are Morse are are use for offer offer Morse Morse 
+use for Morse for 
+
+NOTE: Use -inlist if you haven't learned the entire alphabet, or just want word practice on 
+      a limited set of characters. The output is limited to the inlist set (A-Za-z).
+NOTE: You can use a character range, like A-F, instead of ABCDEF - but it must be in ASCII table 
+      order (e.g. F-A will fail). "a-dhijx-z", "a-dD-G0-8" are good.
+NOTE: The set is NOT limited to letters, e.g. you could include an apostrophe to match "her's", but 
+      over doing this is going to start to look like code groups, if the input is not regular text.
+NOTE: Regardless of the value of inlist or lesson, a prosign found in the input file will be treated as a "word" as long 
+      as the option "min" is grater than 4. This &lt;SK> or &lt;sk>, for example are treated as a word. The two characters are NOT verified,
+      so &lt;ZZ> is a good as a real prosign for matching purposes, its up to your tutor software to treat it appropriately.
+
+      If any list type option contains a "=" or " ", the value part MUST be quoted. E.g. prelist=".,="
+
+*** suflist and prelist can also use the character range notation.
+</PRE>
+<H2>
+Example 8:
+</H2>
+<B>cwpt2.-min 1 -max=8 -num=30 -skip=20</B>
+<P>
+This command will find a lot of short words in a book for example. Like "I a to of in the an on etc."
+As a result if the short ones are encountered first, then you may not get to the longer ones, you could:
+pick a different input file, edit it to discard some early text or use the option "-skip <number>", as
+above. This will skip over the fist number of unique words that match your criteria (min, max, inlist).
+And then after skipping, proceed to record unique words to use.
+<H2>
+Example 9:
+</H2>
+<B>cwpt2.<MARK>-repeat=3</MARK></B>
+<P>
+Simply repeat whatever the output "word" is (including prefix and suffix), a number of times. Default is 1, 
+the max is 5. Maybe helpful for head copy, or when your are really pushing your speed limit and likely to 
+miss some characters. 
+<PRE> 
+<MARK>and and and</MARK> the the the so so so
+<H2>
+Example 10:
+</H2>
+<B>cwpt2.exe -min=3 -max=5 -num=10 -suffix=1 <MARK>-ps prosignFile.txt<MARK></B>
+<PRE>
+you9 which7 <MARK>&lt;BT&gt;</MARK>? for= cwpt2. &lt;AR>&lt;AS>7 line1 &lt;SOS>, text/ may8 use9 that5 can= 
+
+NOTE: Each ProSign seen above is in the "-ps prosignFile.txt".
+      Prosign are treated SIMILARLY to matched words, as follows:
+      - they appear in the case set by -caps
+      - ProSigns are stored BEFORE the input file is read, therefore they contribute toward the "-num XX" quantity.
+        <I> That is, if the number of ProSigns is greater than <B>num</B> you won't get any words in output.</I>
+      - -prefix and -suffix add to the ProSigns, just as if it were a word. The same is true for -random
+        option. e.g. "8&lt;HH>? &lt;HH> &lt;AR>&lt;AS>". &lt;AR>&lt;AS> for example,would only be seen like this, if 
+	that's how they appeared in
+	the file. That is, it is NOT an &lt;AR> added to an &lt;AS> from another input line.
+      - A file entry can have 1-4, ProSigns in sequence on a line (see file sample below).
+      - File lines that do NOT match the ProSign format (&lt;LetterLetter>) are silently ignored.
+        A side effect of the above is that you can have comments in the file, or you can comment out a ProSign 
+	without editing.
+	#&lt;BT>   -- the # will cause this ProSign to be ignored.
+      - NO VALIDATION IS DONE ON THE LETTERS! e.g. &lt;GG> will be used, its up to your tutor/trainer to discard it.
+      - An entry like &lt;HH>&lt;AR>, is literal, if you also want &lt;AR>&lt;HH>, you need the later on another line.
+      - Since the minimum ProSign length is 4 characters, the <B>min</B> option must be greater than 4 or you will
+        not see a ProSign in the output.
+
+      Sample ProSign File:
+      ====================
+      
+      # The above line is empty. or all spaces so its ignored. As is the next "random" text line.
+      This file created on: July 7, 2019
+
+      &lt;AR>
+      &lt;SK>&lt;BT>
+      &lt;AR>&lt;AS>&lt;HH>&lt;BT>
+      &lt;as>
+      &lt;SOS>
+      # spaces before or after a ProSign sequence is OK
+           &lt;KN>
+      # spaces BETWEEN ProSigns is NOT supported, as below, so they will be ignored
+      &lt;SK>     &lt;BT> &lt;VA>
+<PRE>
+<H2>
+Example 11:
+</H2>
+<B>cwpt2.exe -min=3 -max=5 -num=10 <MARK>-delimiter='&lt;BT>'</MARK></B>
+The option, "-delimiter", is a string of 1 or more characters (of any type) which will
+be displayed in between each output word (1 exception). For example, if the output WITHOUT this option were:
+<P>
+the man and is so
+<P>
+With the delimiter of '&lt;BT>', the output is:
+<P>
+the <MARK>&lt;BT></MARK> man &lt;BT> and &lt;BT> is &lt;BT> so
+<P>
+You might use this option to get extra practice for characters that might not appear in significant amount using
+the randomness of "-prefix" or "-suffix". The exception, noted above, is when used with the "-repeat" option. In this case,
+the delimiter appears AFTER the word repeating is done. as shown below. This is might be useful for doing head-copy, to separate the repeated words from the next group of repeated words. As below:
+<PRE>
+the the the &lt;BT> man man man &lt;BT> and and and &lt;BT>
+
+Note: the "-delimiter" option is NOT effected by any other option (random, skip, prefix, suffix)
+Note: it is literal, and what ever you want. e.g. '.?/', 'XYZ', '123', 'It can even have multiple parts'.
+
+Note: You can have multiple delimiters, which are selected randomly, by
+      separating them with a carat "^" (SHIFT 6) e.g. -delimiter="&lt;BT>^&^tAR>^&lt;SK>".
+      for output like: "the ? and 4 men &lt;SK> sat . end".
+
+      Also: If delimiter is used, then -DM X, where 10 &lt;= X >=1, the delimiter is a random multiple of X delimiter characters.
+      DM=0 therefore means no delimiter, even though -delimiter might have a value.
+      As in: delimiter="1|?|=" -DM=3 then the inter-word delimiters might be: 1,?,=,11,=1=,??. 
+
+Note: If a field in the delimiter is only space(s) e.g. ".^?^ ^=", and DM=1, 
+      this will result in NO delimiter if the that field is selected. 
+      So output could be: word1 ? word2 = word3  word4. No delimiter between 
+      the last two words, your tutor will ignore the extra space.
+
+      If DM was greater than 1, then a random number between 1 and DM will be
+      the number of delimiter fields to concatenate together to make the value
+      for output e.g. DM=4 could produce "=??", output therefore could be:
+      word1 =?? word2. But if there is a space in the delimiter, you could get 
+      a multipart delimiter e.g. "=? ?", output could be: word1 =? ? word2.
+
+Note: ONLY FOR LCWO OR EBOOK2CW USERS: if a delimiter field contains an asterisk (*), that will translate into a 1 second
+      silence period during playback. This may be used with any feature where a delimiter applies, but may be most
+      effective in conjuction with the &lt;repeat&gt; option.
+</PRE>
+<H2>
+Example 12:
+</H2>
+<B>cwpt2.exe -min=1 -max=3 -num=6 -unique</B>
+The -unique option, terminates the adding to output as soon as
+a duplicate would be required to meet the quantity in the -num option.
+<P>
+For example, if the output would have been: "he saw the rat he rat" because
+ "he, rat" needed to be duplicated to meet the num=6 quantity. The -unique
+stops creating output making each word unique. Output is reduced to: "he saw the rat".
+<H2>
+Example 13:
+</H2>
+<B>cwpt2.exe -codeGroups -cglist="aeiokmr0-4?"</B>
+<PRE>
+ie3?k 40kee ia?2?
+
+Note: group length determined by -min and -max, above min=max
+Note: groups can be separated by delimiters as previously described
+Note: limited options apply when using code groups, others are silently ignored
+      -len, -num, -caps, -delimiter, -DM, -out, -min, -max apply.
+<H2>
+Example 14:
+</H2>
+<B>cwpt2.exe -EB_LOW=15 -EB_STEP=5 -EB_NUM=3 -num 20</B>
+<PRE>
+This example is for users of the ebook2cw.exe tool to create MP3 files. Adding the above options (they have defaults)
+to options that create "word" practice will insert in-line wpm speed commands for ebook2cw to change sending speed.
+In the order above the options mean: set the lowest code play speed to 15 wpm, create another speed 5 wpm higher, 
+repeat 3 times. The result is that the practice text will on a word by word basis be played at 15, 20 or 25 wpm.
+If delimiters are used, they play at the same speed as the preceding word. 
+
+For example, if the options would have generated:
+
+the and test radio end
+(randomly each of those words would play at speeds shown below - aka BOUNCE)
+
+the and test radio end
+20   15 30   30    15 (indicates wpm)
+
+Note: the actual output, looks like: |w20 the |w15 and |w30 test .... 
+      ebook2cw strips the speed commands. Other software WILL PROBABLY ignore
+      the "|" and send your the "wNN" in between words.
+
+Note: the "EB_" options are ignored if you are using code groups (-codeGroups).
+<H2>
+Example 15:
+</H2>
+<B>cwpt2.exe -EB_LOW=15 -EB_STEP=5 -EB_NUM=3 <mark>-EB_RAMP</mark> -num 20</B>
+<PRE>
+In this example I added the ebook related option -RAMP. This indicates
+the user wants to RAMP up speed, starting with -EB_LOW, and then increasing by
+-EB_STEP after -num/-EB_NUM words were printed. In short making -EB_NUM sections at each speed.
+
+Example output for ebook2cw to use as its input file:
+
+!w15
+the and test radio end ham
+|w20
+it of man sat house end
+|w25
+he the radio sat end test it of
+<H2>
+Example 16:
+</H2>
+<B>cwpt2.exe -EB_LOW=15 -EB_STEP=5 <mark>-EB_SLOW=5 -EB_FAST=2</mark> -num 20</B>
+<PRE>
+!w15
+the and test radio end 
+|w20
+it of 
+|w15
+he the radio sat end 
+|w20
+and the
+
+Note: EB_LOW and EB_STEP set the low speed in wpm, and the high (EB_LOW+EB_STEP)
+      the output will toggle between these two speeds until -num words have been      sent
+Note: the two new options EB_SLOW and EB_FAST specify the number or "words"
+      sent at the respective speeds.
+
+      EB_FAST can be equal or less than EB_LOW.
+      Then effect of this option is to allow short bursts of higher speed to
+      challenge you; then return to slower speed to recover.
+<H2>
+Example 17:
+</H2>
+<B>cwpt2.exe -EB_LOW=15 -EB_STEP=5 -EB_SLOW=5 -EB_FAST=2 <mark>EB_SF=? EB_FS=/ </mark> -num 20</B>
+<PRE>
+!w15
+the and test radio end 
+? ++++++++++++++++++++++++++++++ EB_SF string alerts to speed change coming
+|w20
+it of 
+|w15
+he the radio sat end 
+/ ++++++++++++++++++++++++++++++ EB_FS string alerts to speed change coming
+|w20
+and the
+
+Note: No checks are done on the strings given to these options.
+      You can just specify one of them if desired.
+      The can be the same string.
+      Above I showed a single character, but they are strings, you could have used ?.? or UP DOWN etc.
+      
+      *** LCWO/ebook2cw support a "delay" in milliseconds with " |Sxxxx " where xxxx is the time. (as 
+      with all the in-line LCWO options the space before and after is needed.)
+      This could be useful used in conjunction with the alert character, like ES_SF=" |S500 / |S500 ".
+
+Note: EB_SF and/or EB_FS are the only EB_ options which <I>may</I> be used in a non-LWCO or ebook2cw
+      environment. If they are specified with the option <B>mixedMode</B> they will frame the codeGroup 
+      inserted in the output. e.g. word1 word2 xxx 3h6d?9 yyy word3 word4
+                                        EB_SF  ===        === EB_FS
+<H2>
+Example 18:
+</H2>
+<B>cwpt2.exe -EB_LOW=10 -EB_STEP=5 <mark>-EB_REPEAT=3 </mark> -num=5</B>
+<PRE>
+This is similar to using the -repeat option previously described, but now we will take advantage of ebook2cw's
+in-line speed changes. Obviously, this output generated by cwpt2. will become the input file to ebook2cw/LCWO, which
+is now your tutor software to create a playable mp3 file.
+
+|w10 women |w13 women |w16 women |w10 young |w13 young |w16 young |w10 darcy 
+
+Note: EB_LOW=10, creates the low speed 10 wpm command "|w10" for ebook2cw.
+Note: EB_STEP=3, causes each successive word to be sent +3 wpm from the prior value.
+Note: EB_REPEAT=3, indicates that we want each word found to repeat 3 times, each a step up in speed by +3 wpm.
+
+Of course other options were gotten from the options file see -opt), or the command line (-min, -max, -num, etc.)
+
+In the following example, I added the use of the delimiter option (previously described) to get a prosign as an audible
+clue that the speed was going to drop back for the next set of words.
+
+|w10 hurst |w13 hurst |w16 hurst &lt;SK> |w10 darcy |w13 darcy |w16 darcy &lt;BT> |w10 young |w13 young
+
+To get this I added to the command line (or options.cwpt2.: -delimiter="&lt;SK>|&lt;BT>" -DM 1
+<H2>
+Example 19:
+</H2>
+<B>cwpt2.exe -min=5 -max=8 -i="in.txt" <mark>-mixedMode=2</mark></B>
+<PRE>
+visit other <mark>=,0-a0</mark> about share <mark>-=?a=-?</mark>` myself those 
+
+Note: Every "2" words printed from matching in the input file is followed by 
+      a random code group (from characters in cglist).
+Note: all options from word match word still apply if used (prefix, suffix, delimiter, etc.)
+Note: The length of the code groups is between -min and -max.
+Note: In mixedMode, the code group word is NOT counted into the -num word count.
+</PRE>`
+<H2>
+Example 20:
+</H2>
+<B>cwpt2.exe ... usual options choices ... <mark>-header="|W3 |f600"</mark></B>
+<PRE>
+The output is inserted, verbatim before any generated output.
+
+Note: No checks are performed on the content of header, its passed to your 
+      tutor for evaluation.
+ 
+      A good use of this is to set multiple ebook related options. The command above
+      would increase the inter word space by 3 times normal spacing; and set the tone 
+      to 600 HZ. (see ebook2cw manual for other in-line options) <I>So no quotes for ebook use or the
+      option will NOT take effect. Since an ebook option sequence MUST be followed by a space between
+      the option and text, cwpt2 <B>will</B> add one trailing space. (e.g. -header="|f660 |w20"  would
+      create output like: |f660 |w20 word1 word2 etc.</I> (note the quotes are needed because the string 
+      contains a space.)
+
+<H2>
+Example 21:
+</H2>
+<B>cwpt2.exe -DM=2 -delimiter="1^A^?^&lt;BT>" -DR</B>
+<PRE>
+As previously discussed, DM of 2, would give 1 or 2 delimiter strings concatenated between each word.
+e.g.
+word 1 word A? word &lt;BT> word AA word &lt;BT> word ?
+
+with -DR (aka DR=true) you indicate that delimiter printing is random
+e.g.
+word word word &lt;BT> word AA word word 1
+
+<H2>
+Example 22:
+</H2>
+<B>cwpt2.exe -min=2 -max=4 -cgmin=6 -cgmax=8 -mixedMode=3</B>
+<PRE>
+on at of 3,a??4 no he is a4263?/ and hat four ......
+
+NOTE: cgmin and cgmax now let the length of code groups differ from that of words (new as of 1/27/2020)
+NOTE: if cgmin and cgmax are not set, they are set to the corresponding min and max for backward
+      compatibility
+
+<H2>
+Example 23:
+</H2>
+<B>cwpt2.exe -min=2 -max=4 -cgmin=6 -cgmax=8 -mixedMode=3</B>
+<PRE>
+This input file for this example is a simple list of short words. The first line of output follows:
+
+on at of 3,a??4 no he is a4263?/ and hat four ......
+         ======          =======
+
+NOTE: In the above, after every 3 words (mixedMode=3) we get a code group.
+      We can add an option -MMR (mixed mode random) which gives a 50/50 chance that a code group will be 
+      suppressed to lessen predictability. (new as of 1/27/2020)
+
+<B>cwpt2.exe -min=2 -max=4 -cgmin=6 -cgmax=8 -mixedMode=3 <mark>-MMR</mark></B>
+
+NOTE: The stretch below with no code group due to -MMR.
+
+on at of 3,a??4 no he is a4263?/ and hat four in and on hat he of ?.23d3 he so .....
+         ======          =======                                  ======
+
+ ***
+ *** IF YOU ARE USING LCWO/EBOOK2CW FOR PLAYBACK AND mixedMode=X, YOU CAN ALSO USE SPEED CHANGES ***
+ ***
+
+      Typically people can copy plain text faster than they can copy codeGroups, with this in mind you 
+      might want to have the copy above configured with in-line speed changes so that plain text "words" 
+      could be sent at a higher speed than the code groups. To achieve this, we use two more ebook options 
+      we've seen before; EB_LOW sets the low(slow) speed of the code group, and EB_STEP the incremental 
+      speed to add to EB_LOW to get the higher speed to use for the plain text.
+
+<B>cwpt2.exe -min=2 -max=4 -cgmin=6 -cgmax=8 -mixedMode=3 <mark>-EB_LOW=20 -EB_STEP=5</mark></B>
+
+|w25 two four nine |w20 fl,we0 |w25 four ten one |w20 yb251c |w25 one five nine |w20 ajrr7h |w25 
+---- +++++++++++++ ---- ====== ---- ++++++++++++ ---- ====== ---- ++++++++++++  ---- ====== ----
+
+      You see the copy starts with the speed at 25 wpm, that's EB_LOW=20 + EB_STEP=5.
+      You see prior to each code group the speed drops.
+
+      In the above generated text for LCWO (you can paste this line into "Convert text to cw" screen)
+      the in-line speed changes are underlined with dashes, the plain text (played at high speed) is underlined
+      with pluses, the code groups are underlined with equals.
+
+      Of course -MMR could also be used as previously described (not shown again).
+
+      As shown in example 16, if the user desires two other options EB_SF (slow to fast transition) and/or
+      EB_FS (fast to slow) can be given a string (character(s), ProSign) which provides an audible alert
+      in Morse code that the speed will transition. If used, the alert string is sent PRIOR to the speed change.
+
+      Just to demonstrate, let EB_SF=,, and EB_FS=??
+
+|w25 four two nine ??|w20 ha?l50 ,,|w25 nine ten five ??|w20 tof=u9 ,,|w25 six four four 
+                   --            --                   --            --
+
+      Above the simple alert strings are underlined with dashes, they occur just before the LCWO speed
+      change.
+
+      *** What might be more fun, is instead of using EB_SF and EB_FS having some characters as an alert,
+          to instead make use of another LCWO feature, that is change the tone frequency of the code groups.
+	  The line below uses frequency changes, you can cut and paste this into LCWO's "Convert text to CW"
+	  to try it. (To generate this I used -EB_FS="|f750" and -EB_SF="|f600" the initial tone of 600 HZ 
+	  can be set in the browser with -header="|f600". (or |wxx to set wpm, or |exx to set Farnsworth wpm,
+          or |Wxx to set increased word spacing)
+
+|f600|w25 four two nine |f750|w20 ha?l50 |f600|w25 nine ten five |f750|w20 tof=u9 |f600|w25 six four four 
+
+=========               =========      
+600hz 25wpm            750hz 20wpm       
+
+      Or better yet! Instead of changing the tone of the code group, or using a text alert, we can generate a short
+      signal by using letter E or T framed by a short amount of silence (200ms in this example) and just changing
+      the tone of that one letter. Make EB_FS and EB_SF="|S200 |f860 E |S200 |f680" (note spaces are required.)
+
+      The copy is below. Start at 680 HZ, play 3 words at 25 wpm, a high pitched E framed by some silence, 2 words at
+      35 wpm, and repeat the cycle until the -num XX words have been output.
+
+|f680 |w25 rowdyism wagons sin |S200 |f860 E |S200 |f680 |w35 irksome unicycle |S200 |f860 E |S200 |f680 |w25 sellers 
+
+</PRE>
+
+<H2>
+Example 24:
+</H2>
+<B>cwpt2.exe ... -in myInput -NR <mark>-reverse</mark> ...</B>
+<PRE>
+
+Note: This example will demonstrate a few more things than the <B>reverse</B> option.
+
+
+The following line is the contents of myInput. 
+
+<I>This is the content of myInput file to demonstrating reverse option.</I>
+
+The following command, sets </B>min</B> and <B>max</B> so that no words will be discarded, Also, </B>
+num</B> was set to 11 so that no words are discarded and none are used more than once.
+<B>NR</B> means non-randomized, in other words the output stays in the same order as the input.
+<B>len</B> was set short, so that you can see that <I>if</I> a line is longer, but a word is
+straddling the length boundary, that that word is finished rather than having a word split.
+
+./cwpt2.exe -min=1 -max=15 -num=11 -in=myInput -NR -len=20 -out=myOut
+
+The text below is the output now in file=<I>myOut</I>.
+Note, that the first word was captured even though it started with an uppercase, that's because the default
+character matching characters is option <B>inlist</B> is "A-Za-z".
+
+
+<I>`
+this is the content of
+myinput file to demonstrating
+reverse option 
+</I>
+
+Now we'll reuse the command, adding the <B>reverse</B> option, <I>and</I> changing the input file name
+to be that of the output above. The text following the command has each word reversed. (This was suggested in
+William Pierponts document because you retain the letter frequency of the input,and eliminate anticipation.)
+
+./cwpt2.exe -min=1 -max=15 -num=11 -in=myOut -NR -len=20 -reverse -out=myReversed
+
+<I>
+siht si eht tnetnoc fo
+tupniym elif ot gnitartsnomed
+esrever noitpo 
+</I>
+
+Now for the acid test, lets reverse again to get back the original text (same words, same order, same line length).
+Note: I purposely have the option <B>in</B> two times, just to remind you that is the right most option that
+overrides a prior value, just a a command line option overrides the same option in the options file (if used),
+and that in turn overrides the built-in default. This may seem like over kill, but with so many options it
+does make for easy and limited typing to change the tools behavior for different practice text generation.
+
+./cwpt2.exe -min=1 -max=15 -num=11 -in=myInput -NR -len=20 -out=myOut -reverse -in=myReversed -out=myFinal
+
+<I>
+this is the content of
+myinput file to demonstrating
+reverse option 
+</I>
+
+Final comments. This was a carefully crafted to demonstrate several features. The fact that this still looks like
+a logical sentence is based on the fact that all words in the input were unique, nothing got discarded
+and we keep the same order. This is not design intent of this tool, Use LCWO, ebook2cw, or several other tools
+if you are looking to just provide input transformed in CW (with non-Morse characters stripped out).
+</PRE>
+
+<H2>
+Example 25: 
+</H2>
+<B>cwpt2.exe -opt demo.opt <mark>Combined Features Example</mark> ...</B>
+<PRE>
+
+This example combines about 80% of the available options, including many of the ebook options.
+All defaults are overridden for demonstration purposes. The intent is to show flexibility of the
+tool, not that this combination would necessarily be used by many people. As stated before,
+EVERYTHING is optional, so look at the functionality not on the specific content (words, characters,
+ProSigns, lengths, etc. they are all configurable).
+
+The input and output are kept short to limit the space in the read-me, for actual practice the user
+would most likely specify much larger sizes.
+
+First, I'll explain the three files utilized to create the output, then we'll look at how the ebook
+options instrument the file so that LCWO or ebook can perform on-the-fly option changes.
+
+**** below is the input file <demo.txt> **********
+the quick brown fox jumped over the lazy dogs back
+
+**** below is the prosign file <prosign.txt> *****
+&lt;AS>
+&lt;BT>
+&lt;HH>
+
+**** below is the options file <demo.opt> *******
+**** line numbers are NOT part of the file, they are for the notes that follow
+     1	in=demo.txt
+     2	prosign=prosign.txt
+     /	out=fileToGiveLCWOToPlay
+       
+     4	inlist="A-Ya-y"
+     5	min=3
+     6	max=5
+       
+     7	num=11
+     8	len=60
+     9	NR
+    10	caps
+       
+    11	cgmin=5
+    12	cgmax=5
+    13	cglist="a-z0-9,.?/=@"
+       
+    14	repeat=2
+       
+    15	mixedMode=3
+    16	MMR
+       
+    17	prefix=1
+    18	prelist="012"
+    19	suffix=2
+    20	suflist=".,"
+    21	random
+       
+    22	DM=3
+    23	delimiter="?^/^&lt;SK> ^QTH "
+    24	DR
+       
+    25	#END
+       
+    26	header=|f650
+       
+    27	EB_RAMP
+    28	EB_REPEAT=3
+    29	EB_NUM=4
+    30	EB_LOW=20
+    31	EB_STEP=5
+    32	EB_EFFECTIVE=18
+    33	EB_SF="|s400 |f1500 T |f650 |s400"
+       
+******* end of file
+1,2,3	Input file of potential words to be used; prosign file already listed, output file to give to tutor program.
+4       The characters an input word may contain or else its discarded. Note they is no "y", so the word "lazy" is
+        discarded.
+5,6     The minimum, and maximum length of an input word, or its discarded. Note "jumped" is longer than 6, so discarded.
+7-10    Some global options. Num limits the words in output (note a sequential repeat of a word is not counted).
+        The output line len, is approximately this long unless it would split a word.
+	NR means the input words are Not-Randomized, so they are in the order they were found unless there were discards.
+	The output is all caps instead of default lower case.
+11-13   Are for code groups. In this example, the code group is created because of the mixedMode option. The lengths
+        for min and max are the same so the code groups are fixed size. The characters in a code group are not related
+	to any other list option.
+14      Each "word" that passes the filter criteria of: min, max, and inlist, will be shown twice. 
+15,16   MixedMode means the user wants a code group mixed in with words read from file. Here the 3 means a code group
+        will appear after every 3 words - normally. But MMR, indicates that the behavior is randomized, so you could see
+	multiples of 3 words without a code group.
+17-21   Prefixes and/or suffixes may be added to words (note prosigns randomly replace a word, therefore they can get
+        a prefix or suffix. The number as in suffix=2, means the word gets from 1-2 characters added. The suflist and
+	prelist are the possible characters (they are limited and different in the example to easily see the effect.
+	The final option random, means either could be suppressed on any given word. Note that a space is a viable
+	character, so it could make random character(s) just before or after a word.
+22-24   Delimiters are strings that delimit or separate words. The list of values are separated by "^". If DM is greater
+        than 1 (DM - delimiter multiples), between 1 and the DM value of fields from the delimiter list may be 
+	concatenated together (spaces are supported). DR means the appearance is random.
+25      The #END stops the reading of the options file.
+
+The remainder of the options will be discussed below.
+
+***** Below is the practice text generated which does NOT use any ebook features, I'll add them shortly.
+
+<I>
+0THE 0THE &lt;SK> QUICK QUICK QTH &lt;SK> 2BROWN 2BROWN QTH ? 0&lt;AS> 0&lt;AS> FOX FOX ?&lt;SK> k0OVER 0OVER
+?/&lt;SK> 0THE 0THE &lt;HH> &lt;HH> &lt;SK> /  DOGS. DOGS. ? 0BACK,. 0BACK,.  QTH  THE THE QTH &lt;SK>  
+</I>
+
+
+Comments:
+
+So you can see the words: THE, QUICK, BROWN, FOX, and OVER, are from the <B>in</B> file, in order.
+&lt;AS> and &lt;HH> were from the prosign file, they are treated as words. They were randomly injected into into the word flow.
+`
+Note "lazy" and "jumped" were discarded for length or character make up respectively.
+
+THE, BROWN, &lt;AS>, and OVER got a prefix characters added (prefix=1) and its one of the characters in prelist (012).
+
+QUICK and FOX got neither a prefix or suffix because the <B>random</B> option was set.
+
+DOGS and BACK got a suffix, 1 or 2 characters (suffix=2) from suflist (,.).
+
+BACK got both a prefix and suffix.
+
+Every other word is separated by a delimiter string, you see <SK>, /, QTH. Since the delimiter random option <B>DR</B>
+is set, sometimes it was suppressed.
+
+All the "words" are duplicated due to the <B>repeat=2</B> option.
+
+
+Now lets go back to the options file, assume the #END line has been removed, leaving all the options as above,
+lets add as many ebook options are possible. The output will be much more complex (thankfully without any need
+for typing) and allow LCWO or ebook to give us on-the-fly changes to speeds (character and effective, tones, etc.)
+
+26	The header |f650 tells sets the audio tone in HZ. (it will override the browser setting).
+27	Set the RAMP feature, character speed will increase throughout the session.
+28 	Repeat sets a second simultaneous feature which repeats EACH word at a higher speed, until the ramp speed increases.
+        Since its 3, each word is played at 3 speeds.
+29      Num specifies how many speed changes in the ramp from the start until the end of the session.
+        The number of words at each ramp speed is the total num/EB_NUM (don't worry about the math errors in values are
+	flagged).
+30      The lowest or starting character speed in wpm is set by EB_LOW.
+31      EB_STEP is the number of wpm to increase the speed by in each ramp up.
+32      EB_EFFECTIVE indicates the user wants effective or Farnsworth timing. The delta between EB_LOW and EB_EFFECTIVE
+        is maintained as the ramp or repeat speeds change.
+33	An optional alert tone (1 dah) is played before each change in ramp speed. The alert could just be text,
+        but this sequence tells LCWO to: sleep for 400 ms, change frequency to 1500 HZ, play a "T" (dah), then revert to
+	the cw tone of 650 HZ, and finally sleep (or place silence 400 ms).
+
+
+What does this look like? The file is below. Since its wrappers around what we had above I'm not going to bore you with
+the item by item description. You can see the character speeds set by |wNN, and the effective speed by |eNN. |fNN is
+the audio tone.
+
+You can cut and paste the text below into LCWO to hear it, even with out using cwpt2. You can use guest credentials, 
+test/test to login if you don't have login credentials of your own (it goes into the "Convert text to CW" screen).
+
+Just to point out a few effects of the ebook options:
+
+|w20 is from EB_LOW, the starting character speed wpm
+|e18 is from EB_EFFECTIVE the starting effective speed. In the rest of the session the effective speed stays 2 wpm
+     less than the character speed.
+
+Words are sent 4 times, twice as explained above due to repeat, then again at increased speed from <B>EB_REPEAT=2</B>.
+
+The entire word repeat and speed repeats are within the <B>RAMP</B> progression, building from <B>EB_LOW</B> wpm through 
+<B>EB_NUM</B> speed increments of <B>EB_STEP</B> size.
+
+**** below is stored in the output file specified by out=, in the options file.
+
+|f650
+|w20 |e18 0THE 0THE |w22 |e20 0THE 0THE &lt;SK>  |w20 |e18
+QUICK QUICK |w22 |e20 QUICK QUICK QTH &lt;SK>   |s400 |f1500 T |f650
+|s400|e18 |w20 |w22 |e20 2BROWN 2BROWN |w24 |e22 2BROWN 2BROWN
+QTH ? |w22 |e20 0&lt;AS> 0&lt;AS> |w24 |e22 0&lt;AS> 0&lt;AS> |s400 |f1500
+T |f650 |s400 29,RJ  |s400 |f1500 T |f650 |s400|e20 |w22 |w24
+|e22 FOX FOX |w26 |e24 FOX FOX ?&lt;SK>  |w24 |e22 0OVER 0OVER |w26
+|e24 0OVER 0OVER ?/&lt;SK>   |s400 |f1500 T |f650 |s400|e22 |w24
+|w26 |e24 0THE 0THE |w28 |e26 0THE 0THE |w26 |e24 &lt;HH> &lt;HH> |w28
+|e26 &lt;HH> &lt;HH> &lt;SK> /  |s400 |f1500 T |f650 |s400|e24 |w26 |w26
+|e24 DOGS. DOGS. |w28 |e26 DOGS. DOGS. ? |w26 |e24 0BACK,. 0BACK,.
+|w28 |e26 0BACK,. 0BACK,. QTH  |w26 |e24 THE THE |w28 |e26 THE
+THE QTH &lt;SK>  
+
+
+As a final note on using EB_RAMP with and without EB_REPEAT, if num is not significantly larger than EB_NUM, you will
+have a very steep RAMP (aka fast changes in speed). This is amplified if you combine it with EB_REPEAT with a large
+value. So start out with small values for EB_STEP, EB_REPEAT until you see whats generated.
+
+-EB_HELP should summarize the interactions of ebook options without the need to refer to the read-me.
+
+**** cwpt2.exe -EB_HELP shown below
+
+Relationships and compatibilities for EB_ Options
+
+Option names starting with EB_ are only for users that will input the generated practice text
+to LCWO's "Convert text to CW" screen, or for input to ebook2cw (see Note).
+
+Other non-EB_ options can be used as well.
+
+EB_SLOW: (alternating slow/fast word groups)
+		requires: EB_SLOW, EB_LOW, EB_FAST, EB_STEP
+		optional: EB_SF, EB_FS
+		non-compatible: EB_RAMP, EB_EFFECTIVE_RAMP, EB_NUM, EB_REPEAT
+
+EB_RAMP: (steady increase of character speed sections of words)
+		requires: EB_RAMP, EB_LOW, EB_STEP, EB_NUM
+		optional: EB_SF, EB_REPEAT, EB_EFFECTIVE
+		non-compatible: EB_EFFECTIVE_RAMP
+
+EB_EFFECTIVE_RAMP: (steady increase of effective speed sections, with fixed character speed)
+		requires: EB_EFFECTIVE_RAMP, EB_LOW, EB_STEP, EB_NUM, EB_EFFECTIVE
+		optional: EB_SF
+		non-compatible: EB_RAMP, EB_REPEAT
+
+EB_REPEAT: (each word repeated at increasing character speeds)
+		requires: EB_REPEAT, EB_LOW, EB_STEP
+		optional: EB_EFFECTIVE, EB_RAMP (EB_NUM if EB_RAMP)
+		non-compatible: EB_EFFECTIVE_RAMP
+
+EB_LOW, EB_NUM, EB_STEP (no other EB_ options): ("bounce" each word has random character speed)
+		requires: EB_LOW, EB_STEP, EB_NUM
+		optional:
+		non-compatible: EB_EFFECTIVE_RAMP, EB_RAMP, EB_REPEAT, EB_SLOW, EB_FAST, EB_SF, EB_FS
+
+Note: EB_SF and EB_FS MAY be used outside of LCWO/ebook2cw. If used with option mixedMode,
+these will insert the specified string immediately before and/or after the codeGroup.
+<P>
+<H2>
+Example 26: 
+</H2>
+<B>cwpt2.exe ... <mark>-lesson 5</mark></B>
+<PRE>
+
+Setting a lesson number per the LCWO Koch lesson list, will populate  cglist (for code groups) as well as inlist (for parsing and matching words in input file)
+In the command line given, cglist would now be "kmure", and inlist would be "kmureKMURE". This is the last option set, so it overrides any earlier setting
+of cglist and inlist, both option file and command line.
+
+Range values are 1-40, setting 0 leaves inlist and cglist per their defaults (per LCWO), option file or command line which ever last last.
+
+If you use Morse Elmer, Just Learn Morse Code, MorseCodeNinja, or G4FON you will specify the tutor with <B>tutor</B> option, this will populate the options 
+<B>inlist</B> and <B>cglist</B> with the characters and in the order that they are taught with those products.
+<P>
+<H2>
+Example 26: 
+</H2>
+<B>cwpt2.exe in=infile -repeat=2 <mark>-wordCount=3</mark> ...</B>
+<PRE>
+We've seen with an input set of words like: <B>one two three four</B>,
+that the repeat option, repeats each word like: <B>one one two two three three four four</B>.
+This is good for head copy; just listen the first time, the write or type the second time.
+If the word lenght is long, you might even want to repeat more than 2 times.
+<P>
+The new option, wordCount, tells cwpt2 how many words from the input, that you want linked together like a word phrase.
+This "phrase" is treated like a new word, that is, if repeat=2 (it must be 2 or greater to use wordCount),
+that you want the entire phrase repeated 2 times. This is for head copy because its a different kind of
+mental buffer exercise, but also because in any language (or QSO) there are common short phases like: "he said", "I am",
+"CQ DX", etc.
+<P>
+The above might look like: <B>one two three one two three four....</B>.
+It might be helpful to add a simple delimiter=<BT> or and thing that is differnet than words, so you would hear:
+The above might look like: <B>one two three &lt;BT&gt; one two three &lt;BT&gt; four....</B>.
+<P>
+Note: Since the phrase is treated like a word, a prefix or suffix will be added to the first or last word only (probably not what you want).
+</H2>
+Contact me at: <B>WA2NFN@qsl.net</B>.
+<P>
+73
+<B>Bill, WA2NFN<B>
+</BODY>
+</HTML>
